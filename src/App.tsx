@@ -12,6 +12,8 @@ import {Posts} from './pages/Posts.tsx';
 import {PostsLoader} from './api/posts-loader.ts';
 import {Error} from './Error.tsx';
 import {PostDetail} from './pages/PostDetail.tsx';
+import {PostsCreate} from './pages/PostsCreate.tsx';
+import {postAction} from './api/post-action.ts';
 
 const Layout = () => (
   <>
@@ -52,9 +54,14 @@ const router = createBrowserRouter([
         ),
         children: [
           {
+            path: 'create',
+            action: postAction,
+            element: <PostsCreate />
+          },
+          {
             path: ':postId',
             element: <PostDetail />
-          }
+          },
         ]
       },
       {
