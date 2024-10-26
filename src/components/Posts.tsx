@@ -1,7 +1,7 @@
 import {loadingStates, useApi} from '../hooks/useApi.ts';
 
 export const Posts = () => {
-  const [posts, loadingState] = useApi('https://jsonplaceholder.typicode.com/posts?limit=10');
+  const [posts, loadingState] = useApi<{ id: number; title: string }[]>('https://jsonplaceholder.typicode.com/posts?limit=10', []);
 
   if (loadingState === loadingStates.loading) {
     return <p>Loading...</p>;

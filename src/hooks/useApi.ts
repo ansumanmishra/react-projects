@@ -16,10 +16,9 @@ async function getData(url: string) {
   return response.json();
 }
 
-
-export const useApi = (url: string) => {
+export const useApi = <T>(url: string, defaultData: T): [T, string] => {
   const [loadingState, setLoadingState] = useState(loadingStates.idle);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(defaultData);
 
   useEffect(() => {
     setLoadingState(loadingStates.loading);

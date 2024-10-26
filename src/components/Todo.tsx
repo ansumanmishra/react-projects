@@ -19,6 +19,7 @@ export const Todo = () => {
 
   return (
     <>
+      <h1>Todo</h1>
       <input type="text" value={todo} onChange={e => setTodo(e.target.value)}/>
       <button type="button" onClick={addTodo}>Add</button>
       <br/>
