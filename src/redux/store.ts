@@ -1,19 +1,24 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import postsReducer from './PostSlice/PostSlice.ts';
-import {postsApi} from '../api/postsService.ts';
-import {setupListeners} from '@reduxjs/toolkit/query';
+import { postsApi } from '../api/postsService.ts';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
 const reducer = combineReducers({
   post: postsReducer,
-  [postsApi.reducerPath]: postsApi.reducer
-})
+  [postsApi.reducerPath]: postsApi.reducer,
+});
+
+const middleware = (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  }).concat(postsApi.middleware);
 
 export const store = configureStore({
   reducer: reducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware),
+  middleware,
 });
 
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof reducer>;
+export type AppDispatch = typeof store.dispatch;

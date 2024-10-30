@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {postsApi} from '../../api/postsService.ts';
 
 export type Post = {
   id: number,
@@ -26,6 +27,14 @@ const postSlice = createSlice({
       }
     }
   },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      postsApi.endpoints.getPosts.matchFulfilled,
+      (state: PostState, { payload }: { payload: Post[] }) => {
+        state.data = payload
+      }
+    )
+  }
 });
 
 export const {addPosts} = postSlice.actions;
