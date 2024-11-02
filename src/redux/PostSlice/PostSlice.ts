@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {postsApi} from '../../api/postsService.ts';
+import {postsApi} from '../baseApiSlice.ts';
 
 export type Post = {
   id: number,
