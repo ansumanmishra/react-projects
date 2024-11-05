@@ -1,5 +1,7 @@
 import {styled as muiStyled} from '@mui/material';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
+import { css } from '@emotion/react'
+
 
 export const StyledButton = muiStyled('button')(({theme, props}) => {
   return {
@@ -44,3 +46,8 @@ export const StyledButtonEmotion1 = styled.button(props => {
     }
   }
 });
+
+export const ButtonCss = css({
+  color: 'red',
+  backgroundColor: 'blue'
+})

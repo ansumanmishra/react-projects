@@ -1,4 +1,6 @@
-import {StyledButton, StyledButtonEmotion, StyledButtonEmotion1} from './ButtonStyles.ts';
+/** @jsxImportSource @emotion/react */
+
+import {ButtonCss, StyledButton, StyledButtonEmotion, StyledButtonEmotion1} from './ButtonStyles.ts';
 
 export const Button = (props) => {
   return (
@@ -10,7 +12,13 @@ export const Button = (props) => {
 
       {/* Emotion Button */}
 
+
       <StyledButtonEmotion {...props}>{props.children}</StyledButtonEmotion>
+
+
+{/*
+      <button css={ButtonCss}>{props.children}</button>
+*/}
 
 {/*
       <StyledButtonEmotion1 primary>SUBMIT</StyledButtonEmotion1>
