@@ -1,10 +1,9 @@
-import {memo} from 'react';
+import {forwardRef, memo} from 'react';
 
-export const Button = memo((props) => {
-  console.log('button rendered');
+export const Button = memo(forwardRef<HTMLButtonElement>((props, buttonRef) => {
   return (
     <>
-      <button onClick={props.onIncrement}>{props.children}</button>
+      <button onClick={props.onIncrement} ref={buttonRef}>{props.children}</button>
     </>
   );
-});
+}));
