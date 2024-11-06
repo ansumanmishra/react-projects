@@ -1,7 +1,9 @@
+import {Recipes} from './components/Recipes';
+
 const App = () => {
   return (
     <div>
-      <h1>App</h1>
+      <Recipes />
     </div>
   )
 }
