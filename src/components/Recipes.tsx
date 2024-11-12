@@ -2,32 +2,7 @@ import {useEffect, useState} from 'react';
 import {Recipe} from '../models/Recipe.ts';
 import {RecipeDetails} from './RecipeDetails.tsx';
 import {RecipeTags} from './RecipeTags.tsx';
-
-const style = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'flex-start',
-  flexFlow: 'row wrap',
-  gap: '20px',
-  justifyContent: 'space-around'
-}
-
-const containerStyle = {
-  margin: '0 auto',
-  maxWidth: '1680px',
-  width: '100%',
-  border: '1px solid rgb(248 248 248 / 87%)',
-  background: 'rgb(248 245 245 / 87%)',
-  padding: '20px',
-}
-
-const recipeContainer = {
-  width: '45%',
-  border: '1px solid #e4dbdb',
-  borderRadius: '5px',
-  padding: '10px',
-  background: 'white'
-}
+import {Box, Paper, Stack} from '@mui/material';
 
 export const Recipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -52,6 +27,10 @@ export const Recipes = () => {
   }, []);
 
   const handleFilterByTag = (tag: string) => {
+    if (tag === 'all') {
+      setFilteredRecipes(recipes);
+      return;
+    }
     const filteredRecipes = recipes.filter((recipe) => recipe.tags.includes(tag));
     setFilteredRecipes(filteredRecipes);
   };
@@ -66,14 +45,31 @@ export const Recipes = () => {
 
   return (
     <>
-      <div style={containerStyle}>
-        <RecipeTags tags={tags} handleFilterByTag={handleFilterByTag}/>
-        <div style={style}>
+      <Box sx={{ maxWidth: '1680px', mt: 2, mx: 'auto', width: '100%'}}>
+        <RecipeTags tags={tags} handleFilterByTag={handleFilterByTag} />
+        <Box mt={2} />
+        <Stack
+          direction="column"
+          spacing={2}
+          sx={{
+            flexWrap: 'wrap',
+            justifyContent: 'flex-start',
+          }}
+        >
           {filteredRecipes.map((recipe) => (
-            <div style={recipeContainer} key={recipe.id}><RecipeDetails recipe={recipe}/></div>
+            <Paper
+              key={recipe.id}
+              sx={{
+                width: '100%',
+                mb: 2,
+              }}
+            >
+              <RecipeDetails recipe={recipe} />
+            </Paper>
           ))}
-        </div>
-      </div>
+        </Stack>
+      </Box>
+
     </>
   );
 };
