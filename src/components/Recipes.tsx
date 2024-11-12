@@ -2,7 +2,14 @@ import {useEffect, useState} from 'react';
 import {Recipe} from '../models/Recipe.ts';
 import {RecipeDetails} from './RecipeDetails.tsx';
 import {RecipeTags} from './RecipeTags.tsx';
-import {Box, Paper, Stack} from '@mui/material';
+import {Box, CircularProgress, Paper, Stack, styled} from '@mui/material';
+
+const StyledCircularProgress = styled(CircularProgress)( ({theme}) => ({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+}))
 
 export const Recipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -36,7 +43,7 @@ export const Recipes = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <StyledCircularProgress />;
   }
 
   if (recipes.length === 0) {

@@ -28,8 +28,7 @@ const App = () => {
             <Typography variant="h6" color="inherit" component="div">
               Recipes
             </Typography>
-
-            <LightModeIcon onClick={switchTheme} sx={{cursor: "pointer"}} />
+            <LightModeIcon onClick={switchTheme} sx={{cursor: "pointer", color: mode === "dark" ? "white" : "black"}} />
           </Stack>
         </Toolbar>
       </AppBar>
